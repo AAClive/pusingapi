@@ -18,10 +18,12 @@ def home():
     return "E"
 async def e(websocket,path):
     await websocket.send("[CLIENT]")
-    
     print("FEIAOFNIAOFNWIAONFWIAOFNWIAOFNWIAOFNWIAOFNWIAOFNWIAONFWIAONFWIAONFWIAONFWIAOFNWIAOFNWIAOFNWIAONFWIAOFNWOANFIWAONFWNIOAWFIONWIFAONAIFOWNIAWFONIFWANIOFNIAOFWNIWANIOFAWNIOFNWIOANIOFWNAIOFNIWOANFIOWANIOFWNIAOFNIOWANIOFWNAIOFNIWOANIOFWNIAOFNWIOA")
     async for message in websocket:
         print(f"[MSG] : {message}")
+        await websocket.send(f"[BACK] {message}")
+        await websocket.send(f"[BACK] {message}")
+        await websocket.send(f"[BACK] {message}")
         await websocket.send(f"[BACK] {message}")
 start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
 asyncio.get_event_loop().run_until_complete(start_server)
