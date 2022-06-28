@@ -10,9 +10,11 @@ import os
 import logging
 import threading
 import gevent
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template
 from flask_sockets import Sockets
 import asyncio
+class Sock(db.Model)
 @app.route("/")
 def home():
     return "E"
