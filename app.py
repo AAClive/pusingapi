@@ -42,14 +42,11 @@ async def e(websocket,path):
         print(f"[MSG] : {message}")
         await websocket.send(f"[BACK] {message}")
         if message=="[DONE]":
-            print(r)
-            print(r)
-            print(r)
-            print(r)
-            print(r)
-            print(r)
-            print(r)
-            print(r)
+            await websocket.send(str(r))
+            await websocket.send(str(r))
+            await websocket.send(str(r))
+            await websocket.send(str(r))
+            
             num1=min(r)
             comwda=r
             comwda.remove(num1)
