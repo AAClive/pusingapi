@@ -56,6 +56,7 @@ async def e(websocket,path):
             xd=xd.split(" ")
             xd=xd[0]
             new_req=Sock(date=xd,num5=num5,num4=num4,num3=num3,num2=num2,num1=num1)
+            await websocket.send("[SERVER] prime")
         else:
             r.append(message)
         
