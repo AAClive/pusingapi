@@ -42,7 +42,7 @@ async def e(websocket,path):
         print(f"[MSG] : {message}")
         await websocket.send(f"[BACK] {message}")
         if message.startswith("email:"):
-            pass
+            await websocket.send(message)
         else:
             if message=="[DONE]":
                 await websocket.send(str(r))
