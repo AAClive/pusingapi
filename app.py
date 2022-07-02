@@ -42,6 +42,7 @@ async def e(websocket,path):
         print(f"[MSG] : {message}")
         await websocket.send(f"[BACK] {message}")
         if message=="[START]":
+            print("FNWIAOFNIWAFOAWFINAWFNIOFNIOAWAWFNIOAWFNIONIOAWFAWFNIOFNIOAWNIOWFAINO")
             await websocket.send("[START]")
         else:
             if message.startswith("email:"):
