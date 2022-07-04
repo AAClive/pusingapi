@@ -23,7 +23,6 @@ app.config["SQLALCHEMY_DATABASE_URI"]="postgres://fjdytdbpqlotqg:0edde1d5a396977
 from sqlalchemy import create_engine
 
 x=datetime.datetime.now()
-x
 class Sock(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     date=db.Column(db.String(255))
@@ -84,5 +83,6 @@ async def e(websocket,path):
 start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
 asyncio.get_event_loop().run_until_complete(start_server)
 if __name__=="__main__":
+    db.create_all()
     asyncio.get_event_loop().run_forever()
     app.run()
