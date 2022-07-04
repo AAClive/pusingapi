@@ -83,5 +83,5 @@ async def e(websocket,path):
 start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
 asyncio.get_event_loop().run_until_complete(start_server)
 if __name__=="__main__":
-    threading.Thread(target=asyncio.get_event_loop().run_forever()).start()
+    asyncio.get_event_loop().run_forever())
     app.run()
