@@ -39,6 +39,11 @@ def home():
 async def e(websocket,path):
     await websocket.send("[CLIENT]")
     async for message in websocket:
+        print("----")
+        print(websocket)
+        print(path)
+        print(message)
+        print("----")
         print(f"[MSG] : {message}")
         await websocket.send(f"[BACK] {message}")
         if message=="[START]":
