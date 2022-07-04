@@ -32,12 +32,14 @@ class Sock(db.Model):
     num2=db.Column(db.String(255))
     num1=db.Column(db.String(255))
 
-    
+connected=set()
+
 @app.route("/")
 def home():
     return "E"
 async def e(websocket,path):
     await websocket.send("[CLIENT]")
+    connected.add(websocket)
     async for message in websocket:
         print("----")
         print(websocket)
@@ -48,7 +50,9 @@ async def e(websocket,path):
         await websocket.send(f"[BACK] {message}")
         if message=="[START]":
             print("FNWIAOFNIWAFOAWFINAWFNIOFNIOAWAWFNIOAWFNIONIOAWFAWFNIOFNIOAWNIOWFAINO")
-            await websocket.send("[START]")
+            for conn in connected:
+                await conn.send("[START]")
+            
         else:
             if message=="[DONE]":
                 await websocket.send(str(r))
