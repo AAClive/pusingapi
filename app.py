@@ -48,43 +48,48 @@ async def e(websocket,path):
         print("----")
         print(f"[MSG] : {message}")
         await websocket.send(f"[BACK] {message}")
-        if message=="[START]":
-            print("FNWIAOFNIWAFOAWFINAWFNIOFNIOAWAWFNIOAWFNIONIOAWFAWFNIOFNIOAWNIOWFAINO")
-            for conn in connected:
-                try:
-                    await conn.send("[START]")
-                except Exception as e:
-                    print(e)
-                    print(e)
-                    print(e)
-                    print(e)
-            
+        if message.startswith("[LIST] "):
+            sda=message
+            sda=sda.replace("[LIST] ","")
+            print(sda)
         else:
-            if message=="[DONE]":
-                await websocket.send(str(r))
-                await websocket.send(str(r))
-                await websocket.send(str(r))
-                await websocket.send(str(r))
-                num1=min(r)
-                comwda=r
-                comwda.remove(num1)
-                num2=min(r)
-                comwda.remove(num2)
-                num3=min(r)
-                comwda.remove(num3)
-                num4=min(r)
-                comwda.remove(num4)
-                num5=min(r)
-                comwda.remove(num5)
-                xd=datetime.datetime.now()
-                xd=str(xd)
-                xd=xd.split(" ")
-                xd=xd[0]
-                new_req=Sock(date=xd,num5=num5,num4=num4,num3=num3,num2=num2,num1=num1)
-                db.session.commit()
-                await websocket.send("[SERVER] prime")
+            if message=="[START]":
+                print("FNWIAOFNIWAFOAWFINAWFNIOFNIOAWAWFNIOAWFNIONIOAWFAWFNIOFNIOAWNIOWFAINO")
+                for conn in connected:
+                    try:
+                        await conn.send("[START]")
+                    except Exception as e:
+                        print(e)
+                        print(e)
+                        print(e)
+                        print(e)
+
             else:
-                r.append(message)
+                if message=="[DONE]":
+                    await websocket.send(str(r))
+                    await websocket.send(str(r))
+                    await websocket.send(str(r))
+                    await websocket.send(str(r))
+                    num1=min(r)
+                    comwda=r
+                    comwda.remove(num1)
+                    num2=min(r)
+                    comwda.remove(num2)
+                    num3=min(r)
+                    comwda.remove(num3)
+                    num4=min(r)
+                    comwda.remove(num4)
+                    num5=min(r)
+                    comwda.remove(num5)
+                    xd=datetime.datetime.now()
+                    xd=str(xd)
+                    xd=xd.split(" ")
+                    xd=xd[0]
+                    new_req=Sock(date=xd,num5=num5,num4=num4,num3=num3,num2=num2,num1=num1)
+                    db.session.commit()
+                    await websocket.send("[SERVER] prime")
+                else:
+                    r.append(message)
         
 start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
 asyncio.get_event_loop().run_until_complete(start_server)
