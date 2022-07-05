@@ -50,7 +50,6 @@ async def e(websocket,path):
         await websocket.send(f"[BACK] {message}")
         if message.startswith("[LIST] "):
             sda=message
-            sda=sda.replace("[LIST] ","")
             print(sda)
             for conn in connected:
                 await conn.send(sda)
