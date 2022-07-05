@@ -51,7 +51,10 @@ async def e(websocket,path):
         if message=="[START]":
             print("FNWIAOFNIWAFOAWFINAWFNIOFNIOAWAWFNIOAWFNIONIOAWFAWFNIOFNIOAWNIOWFAINO")
             for conn in connected:
-                await conn.send("[START]")
+                try:
+                    await conn.send("[START]")
+                except:
+                    pass
             
         else:
             if message=="[DONE]":
