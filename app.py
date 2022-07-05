@@ -53,8 +53,8 @@ async def e(websocket,path):
             for conn in connected:
                 try:
                     await conn.send("[START]")
-                except:
-                    pass
+                except Exception as e:
+                    print(e)
             
         else:
             if message=="[DONE]":
