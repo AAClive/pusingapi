@@ -55,6 +55,9 @@ async def e(websocket,path):
                     await conn.send("[START]")
                 except Exception as e:
                     print(e)
+                    print(e)
+                    print(e)
+                    print(e)
             
         else:
             if message=="[DONE]":
