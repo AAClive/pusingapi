@@ -52,6 +52,8 @@ async def e(websocket,path):
             sda=message
             sda=sda.replace("[LIST] ","")
             print(sda)
+            for conn in connected:
+                await conn.send(sda)
         else:
             if message=="[START]":
                 print("FNWIAOFNIWAFOAWFINAWFNIOFNIOAWAWFNIOAWFNIONIOAWFAWFNIOFNIOAWNIOWFAINO")
