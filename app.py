@@ -93,13 +93,6 @@ async def e(websocket,path):
                 else:
                     r.append(message)
 
-async def ping(websocket):
-    while True:
-        await websocket.send('{"message":"PING"}')
-        print('------ ping')
-        await asyncio.sleep(5)
-        
-asyncio.run(ping(websocket))
 start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
 asyncio.get_event_loop().run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
