@@ -37,28 +37,28 @@ connected=set()
 @app.route("/")
 def home():
     return "E"
-def e(websocket,path):
-    websocket.send("[CLIENT]")
+async def e(websocket,path):
+    await websocket.send("[CLIENT]")
     connected.add(websocket)
-    for message in websocket:
+    async for message in websocket:
         print("----")
         print(websocket)
         print(path)
         print(message)
         print("----")
         print(f"[MSG] : {message}")
-        websocket.send(f"[BACK] {message}")
+        await websocket.send(f"[BACK] {message}")
         if message.startswith("[LIST] "):
             sda=message
             print(sda)
             for conn in connected:
-                conn.send(sda)
+                await conn.send(sda)
         else:
             if message=="[START]":
                 print("FNWIAOFNIWAFOAWFINAWFNIOFNIOAWAWFNIOAWFNIONIOAWFAWFNIOFNIOAWNIOWFAINO")
                 for conn in connected:
                     try:
-                        conn.send("[START]")
+                        await conn.send("[START]")
                     except Exception as e:
                         print(e)
                         print(e)
@@ -66,10 +66,10 @@ def e(websocket,path):
                         print(e)
             else:
                 if message=="[DONE]":
-                    websocket.send(str(r))
-                    websocket.send(str(r))
-                    websocket.send(str(r))
-                    websocket.send(str(r))
+                    await websocket.send(str(r))
+                    await websocket.send(str(r))
+                    await websocket.send(str(r))
+                    await websocket.send(str(r))
                     num1=min(r)
                     comwda=r
                     comwda.remove(num1)
@@ -87,11 +87,16 @@ def e(websocket,path):
                     xd=xd[0]
                     new_req=Sock(date=xd,num5=num5,num4=num4,num3=num3,num2=num2,num1=num1)
                     db.session.commit()
-                    websocket.send("[SERVER] prime")
+                    await websocket.send("[SERVER] prime")
                 else:
                     r.append(message)
 
 start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+response = loop.run_until_complete(start_server)
+asyncio.get_event_loop().run_forever()
+loop.close()
 if __name__=="__main__":
     db.create_all()
     app.run()
