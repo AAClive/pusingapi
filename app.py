@@ -64,7 +64,6 @@ async def e(websocket,path):
                         print(e)
                         print(e)
                         print(e)
-
             else:
                 if message=="[DONE]":
                     await websocket.send(str(r))
