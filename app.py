@@ -80,7 +80,7 @@ start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 response = loop.run_until_complete(start_server)
-asyncio.run_forever()
+asyncio.get_event_loop().run_forever()
 loop.close()
 if __name__=="__main__":
     app.run()
