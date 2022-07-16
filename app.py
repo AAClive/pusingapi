@@ -76,9 +76,6 @@ async def e(websocket,path):
                 else:
                     r.append(message)
 
-start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-asyncio.get_event_loop().run_forever()
+threading.Thread(target=websockets.serve(e, '0.0.0.0', os.environ['PORT'])).start()
 if __name__=="__main__":
     app.run()
