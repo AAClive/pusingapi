@@ -17,21 +17,6 @@ import asyncio
 import datetime
 
 r=[]
-db=SQLAlchemy(app)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config["SQLALCHEMY_DATABASE_URI"]="postgresql://fjdytdbpqlotqg:0edde1d5a396977261f0428716b633b773e28bece96617dce516284ae10e6c64@ec2-3-222-74-92.compute-1.amazonaws.com:5432/dp6uugc3h8q26"
-from sqlalchemy import create_engine
-
-x=datetime.datetime.now()
-class Sock(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-    date=db.Column(db.String(255))
-    num5=db.Column(db.String(255))
-    num4=db.Column(db.String(255))
-    num3=db.Column(db.String(255))
-    num2=db.Column(db.String(255))
-    num1=db.Column(db.String(255))
-
 connected=set()
 
 @app.route("/")
@@ -98,5 +83,4 @@ response = loop.run_until_complete(start_server)
 asyncio.get_event_loop().run_forever()
 loop.close()
 if __name__=="__main__":
-    db.create_all()
     app.run()
