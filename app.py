@@ -75,7 +75,9 @@ async def e(websocket,path):
                     await websocket.send("[SERVER] prime")
                 else:
                     r.append(message)
-while True:
-    websockets.serve(e, '0.0.0.0', os.environ['PORT'])
+def starter():
+    while True:
+        websockets.serve(e, '0.0.0.0', os.environ['PORT'])
+threading.Thread(target=starter()).start()
 if __name__=="__main__":
     app.run()
