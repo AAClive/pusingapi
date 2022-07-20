@@ -77,9 +77,6 @@ async def e(websocket,path):
                     r.append(message)
 
 start_server = websockets.serve(e, '0.0.0.0', os.environ['PORT'])
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-asyncio.run(start_server)
-asyncio.get_event_loop().run_forever()
+asyncio.get_event_loop().run_until_complete(start_server)
 if __name__=="__main__":
     app.run()
